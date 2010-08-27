@@ -55,7 +55,7 @@ module JSONBuilder
       if @is_array
         compiled = ('[{' + @compiled.join(',') + '}]').gsub(',},{,', '},{')
       else
-        compiled = '{' + @compiled.join(',') + '}'
+        compiled = '{' + @compiled.join(', ') + '}'
       end
 
       if @pretty_print
@@ -69,7 +69,7 @@ module JSONBuilder
     private
       def type_cast(text)
         case text
-          when Array then '['+ text.map! { |j| type_cast(j) }.join(',') +']'
+          when Array then '['+ text.map! { |j| type_cast(j) }.join(', ') +']'
           when Hash then 'teheh'
           when String then "\"#{text}\""
           when TrueClass then 'true'
