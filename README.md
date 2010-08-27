@@ -24,24 +24,32 @@ Second, make sure your controller responds to `json`:
     end
 
 Lastly, create `app/views/posts/index.json.builder` which could look something like:
-
-    json.array! @posts do
-      @posts.each do |user|
-        json.array_item! do
-          render :partial => 'post', :locals => { :json => json, :post => post }
+    
+    json.posts do
+      json.array! @posts do
+        @posts.each do |user|
+          json.array_item! do
+            render :partial => 'post', :locals => { :json => json, :post => post }
+          end
         end
       end
     end
 
 You will get something like:
 
-    [{
-      "id": 1,
-      "name": "Garrett Bjerkhoel"
-    }, {
-      "id": 2,
-      "name": "John Doe"
-    }]
+    {
+      "posts": [
+        {
+          "id": 1,
+          "name": "Garrett Bjerkhoel",
+          "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        }, {
+          "id": 2,
+          "name": "John Doe",
+          "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        }
+      ]
+    }
 
 ## Sample Usage
 
@@ -64,7 +72,7 @@ You will get something like:
     puts json.compile!
 
 ## Speed
-JSON Builder is very fast, it's roughly 6 times faster than the core XML Builder based on our [speed benchmarks](http://github.com/dewski/json_builder/blob/master/test/benchmarks/speed.rb).
+JSON Builder is very fast, it's roughly 6 times faster than the core XML Builder based on the [speed benchmark](http://github.com/dewski/json_builder/blob/master/test/benchmarks/speed.rb).
 
                             user       system     total     real
     JSON Builder            0.700000   0.030000   0.730000  (0.724748)

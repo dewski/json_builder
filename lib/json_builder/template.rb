@@ -24,4 +24,4 @@ module ActionView
   end
 end
 
-ActionView::Template.register_template_handler :'json.builder', ActionView::Template::Handlers::JSONBuilder
+ActionView::Template.register_template_handler :json_builder, ActionView::Template::Handlers::JSONBuilder
