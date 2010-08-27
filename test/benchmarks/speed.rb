@@ -5,7 +5,7 @@ require 'json_builder'
 
 Benchmark.bm do |b|
   b.report('JSON') do
-    5000.times {
+    15000.times {
       j = JSONBuilder::Generator.new
       j.name "Garrett Bjerkhoel"
       j.birthday Time.local(1991, 9, 14)
@@ -31,7 +31,7 @@ Benchmark.bm do |b|
     }
   end
   b.report('JSON Pretty') do
-    5000.times {
+    15000.times {
       j = JSONBuilder::Generator.new(:pretty => true)
       j.name "Garrett Bjerkhoel"
       j.birthday Time.local(1991, 9, 14)
@@ -57,7 +57,7 @@ Benchmark.bm do |b|
     }
   end
   b.report('Builder') do
-    5000.times {
+    15000.times {
       xml = Builder::XmlMarkup.new(:indent => 2)
       xml.name "Garrett Bjerkhoel"
       xml.birthday Time.local(1991, 9, 14)

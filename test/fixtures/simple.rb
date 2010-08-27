@@ -24,6 +24,5 @@ j.skills do
 end
 j.single_skills ['ruby', 'php', 'mysql', 'mongodb', 'haproxy']
 j.booleans [true, true, false, nil]
-j.dot :haha => "dick"
 
 puts j.compile!
