@@ -1,20 +1,12 @@
 # JSON Builder
 Rails provides an excellent XML Builder by default to build RSS and ATOM feeds, but nothing to help you build complex and custom JSON data structures. The standard `to_json` works well, but can get very verbose when you need full control of what is generated. JSON Builder hopes to solve that problem.
 
-## Speed
-JSON Builder is very fast, it's roughly 6 times faster than the core XML Builder.
-
-                            user       system     total     real
-    JSON Builder            0.700000   0.030000   0.730000  (0.724748)
-    JSON Builder Pretty     1.080000   0.060000   1.140000  (1.149416)
-    XML Builder             4.700000   0.110000   4.810000  (4.822932)
-
 ## Using JSON Builder with Rails
-First, make sure to add `json_builder` to your `Gemfile`.
+First, make sure to add the gem to your `Gemfile`.
 
     gem 'json_builder'
 
-Not required, but if you'd like to run the generated JSON through a prettifier for debugging reasons, just edit it in your environment config. It defaults to false for speed improvements.
+Not required, but if you'd like to run the generated JSON through a prettifier for debugging reasons, just set `config.action_view.pretty_print_json` to `true` in your environment config. It defaults to false for speed.
 
     Your::Application.configure do
       config.action_view.pretty_print_json = true
@@ -70,6 +62,14 @@ You will get something like:
     end
     
     puts json.compile!
+
+## Speed
+JSON Builder is very fast, it's roughly 6 times faster than the core XML Builder based on our [speed benchmarks](http://github.com/dewski/json_builder/blob/master/test/benchmarks/speed.rb).
+
+                            user       system     total     real
+    JSON Builder            0.700000   0.030000   0.730000  (0.724748)
+    JSON Builder Pretty     1.080000   0.060000   1.140000  (1.149416)
+    XML Builder             4.700000   0.110000   4.810000  (4.822932)
 
 ## Examples
 See the [examples](http://github.com/dewski/json_builder/tree/master/examples) directory.

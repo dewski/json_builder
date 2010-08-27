@@ -4,7 +4,7 @@ require File.join(File.dirname(__FILE__), 'lib', 'json_builder', 'version')
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |s|
-    root_files = FileList["README.rdoc", "MIT-LICENSE", "CHANGELOG.rdoc"]
+    root_files = FileList["README.md", "MIT-LICENSE"]
     s.name = 'json_builder'
     s.version = JSONBuilder::VERSION.dup
     s.summary = 'JSON Builder'
