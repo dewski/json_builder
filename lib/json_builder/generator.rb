@@ -14,7 +14,7 @@ module JSONBuilder
     end
 
     def inspect
-      finished
+      compile!
     end
 
     def tag!(sym, *args, &block)
@@ -51,7 +51,7 @@ module JSONBuilder
       end
     end
 
-    def finished
+    def compile!
       if @is_array
         compiled = ('[{' + @compiled.join(',') + '}]').gsub(',},{,', '},{')
       else

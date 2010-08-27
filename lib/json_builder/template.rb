@@ -18,7 +18,7 @@ module ActionView
       def compile(template)
         "json = ::JSONBuilder::Generator.new(:pretty => #{ActionView::Base.pretty_print_json});" +
           template.source +
-        ";json.finished;"
+        ";json.compile!;"
       end
     end
   end

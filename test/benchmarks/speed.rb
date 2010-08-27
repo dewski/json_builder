@@ -27,7 +27,7 @@ Benchmark.bm do |b|
       end
       j.single_skills ['ruby', 'php', 'mysql', 'mongodb', 'haproxy']
       j.booleans [true, true, false, nil]
-      j.finished
+      j.compile!
     }
   end
   b.report('JSON Pretty') do
@@ -53,7 +53,7 @@ Benchmark.bm do |b|
       end
       j.single_skills ['ruby', 'php', 'mysql', 'mongodb', 'haproxy']
       j.booleans [true, true, false, nil]
-      j.finished
+      j.compile!
     }
   end
   b.report('Builder') do
