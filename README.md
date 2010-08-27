@@ -33,8 +33,7 @@ If you'd like to run the generated JSON through a prettifier for debugging reaso
     puts json.compile!
 
 ## Examples
-See the examples directory.
-http://github.com/dewski/json_builder/tree/master/examples
+See the [examples](http://github.com/dewski/json_builder/tree/master/examples) directory.
 
 ## Copyright
 Copyright © 2010 Garrett Bjerkhoel. See [MIT-LICENSE](http://github.com/dewski/json_builder/blob/master/MIT-LICENSE) for details.
