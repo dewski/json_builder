@@ -23,7 +23,7 @@ Second, make sure your controller responds to `json`:
       end
     end
 
-Lastly, create `app/views/posts/index.json.builder` which could look something like:
+Lastly, create `app/views/posts/index.json_builder` which could look something like:
     
     json.posts do
       json.array! @posts do
@@ -42,11 +42,11 @@ You will get something like:
         {
           "id": 1,
           "name": "Garrett Bjerkhoel",
-          "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."
         }, {
           "id": 2,
           "name": "John Doe",
-          "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."
         }
       ]
     }
