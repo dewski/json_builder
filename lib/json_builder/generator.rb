@@ -1,5 +1,5 @@
 require 'rubygems'
-require 'blankslate' unless defined?(BlankSlate)
+require 'blankslate' unless defined? BlankSlate
 require 'json'
 
 module JSONBuilder
@@ -17,6 +17,11 @@ module JSONBuilder
       compile!
     end
 
+    #
+    # Using +tag!+ is neccessary when dynamic keys are needed
+    # 
+    #     json.tag! 
+    #
     def tag!(sym, *args, &block)
       method_missing(sym.to_sym, *args, &block)
     end
@@ -52,8 +57,15 @@ module JSONBuilder
     end
 
     def compile!
+      # If there is no JSON, no need for an array
       if @is_array
-        compiled = ('[{' + @compiled.join(',') + '}]').gsub(',},{,', '},{')
+        if @compiled.length > 0
+          compiled = ('[{' + @compiled.join(',') + '}]').gsub(',},{,', '},{')
+        else
+          # No need to make this pretty
+          @pretty_print = false
+          compiled = '[]'
+        end
       else
         compiled = '{' + @compiled.join(', ') + '}'
       end
@@ -75,7 +87,7 @@ module JSONBuilder
           when TrueClass then 'true'
           when FalseClass then 'false'
           when NilClass then 'null'
-          when DateTime, Time, Date then "\"#{text.strftime("%Y-%m-%dT%H:%M:%S")}\""
+          when DateTime, Time, Date then "\"#{text.strftime('%Y-%m-%dT%H:%M:%S%z')}\""
           when Fixnum then text
         end
       end

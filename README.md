@@ -71,6 +71,10 @@ You will get something like:
     
     puts json.compile!
 
+## Conversions
+
+Time - [ISO-8601](http://en.wikipedia.org/wiki/ISO_8601)
+
 ## Speed
 JSON Builder is very fast, it's roughly 6 times faster than the core XML Builder based on the [speed benchmark](http://github.com/dewski/json_builder/blob/master/test/benchmarks/speed.rb).
 
