@@ -1,5 +1,6 @@
+$:.unshift(File.expand_path('../../lib', File.dirname(__FILE__)))
 require 'json_builder'
-j = JSONBuilder::Generator.new
+j = JSONBuilder::Generator.new(:pretty => true)
 
 j.name "Garrett Bjerkhoel"
 j.birthday Time.local(1991, 9, 14)
@@ -10,9 +11,7 @@ j.street do
   j.state "New York"
   j.zip 10065
 end
-j.hashed {
-  :my_name => "Garrett Bjerkhoel".split('')
-}
+j.hashed({ :my_name => "Garrett Bjerkhoel".split('') })
 j.skills do
   j.ruby true
   j.asp false

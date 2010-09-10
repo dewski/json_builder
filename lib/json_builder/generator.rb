@@ -51,7 +51,7 @@ module JSONBuilder
           @compiled[@compiled.length-1] = @compiled.last + "\"#{sym}\":#{text}"
           @indent_next = false
         else
-          @compiled << "\"#{sym}\":#{text}"
+          @compiled << "\"#{sym}\": #{text}"
         end
       end
     end
@@ -82,14 +82,24 @@ module JSONBuilder
       def type_cast(text)
         case text
           when Array then '['+ text.map! { |j| type_cast(j) }.join(', ') +']'
-          when Hash then 'teheh'
+          when Hash then loop_hash(text)
           when String then "\"#{text}\""
           when TrueClass then 'true'
           when FalseClass then 'false'
           when NilClass then 'null'
           when DateTime, Time, Date then "\"#{text.strftime('%Y-%m-%dT%H:%M:%S%z')}\""
-          when Fixnum then text
+          when Fixnum, Bignum then text
         end
+      end
+      
+      def loop_hash(hash)
+        compiled_hash = []
+        
+        hash.each do |key, value|
+          compiled_hash << "\"#{key.to_s}\": #{type_cast(value)}"
+        end
+        
+        '{' + compiled_hash.join(', ') + '}'
       end
 
       def start_indent

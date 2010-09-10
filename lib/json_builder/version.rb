@@ -1,3 +1,3 @@
 module JSONBuilder
-  VERSION = '2.0.1'.freeze
+  VERSION = '2.0.4'.freeze
 end
