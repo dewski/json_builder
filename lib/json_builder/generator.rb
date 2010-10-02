@@ -83,7 +83,7 @@ module JSONBuilder
         case text
           when Array then '['+ text.map! { |j| type_cast(j) }.join(', ') +']'
           when Hash then loop_hash(text)
-          when String then "\"#{text}\""
+          when String then "\"#{text.gsub('"', '\"')}\""
           when TrueClass then 'true'
           when FalseClass then 'false'
           when NilClass then 'null'
