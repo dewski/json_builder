@@ -27,7 +27,7 @@ module JSONBuilder
     end
 
     def array!(set, &block)
-      @array_length = set.length if set.is_a?(Array)
+      @array_length = set.length if set.respond_to?(:length)
       @is_array = true
       method_missing(nil, nil, &block)
     end
