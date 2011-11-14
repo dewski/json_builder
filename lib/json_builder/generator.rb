@@ -3,7 +3,7 @@ require 'blankslate' unless defined? BlankSlate
 require 'active_support'
 require 'json'
 
-module JsonBuilder
+module JSONBuilder
   class Generator < BlankSlate
     def initialize
       @c = {}
