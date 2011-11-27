@@ -8,15 +8,17 @@ module JSONBuilder
     
     def initialize(key, *args, &block)
       @key = key
-      @value = Value.new(*args, &block)
+
+      argument = args.shift
+      if argument.is_a?(Array)
+        @value = Elements.new(argument, &block)
+      else
+        @value = Value.new(*argument, &block)
+      end
     end
     
     def to_s
       "\"#{@key}\": #{@value}"
-    end
-    
-    def array(items, &block)
-      @value = Elements.new(items, &block)
     end
   end
 end
