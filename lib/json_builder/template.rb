@@ -16,9 +16,9 @@ module ActionView
       self.default_format = Mime::JSON
 
       def compile(template)
-        "json = ::JSONBuilder::Generator.new(:pretty => #{ActionView::Base.pretty_print_json});" +
+        "::JSONBuilder::Compiler.generate {" +
           template.source +
-        ";json.compile!;"
+        "};"
       end
     end
   end
