@@ -16,6 +16,7 @@ json = JSONBuilder::Compiler.generate do
     state "NY"
     zip 10065
   end
+  key :nil, "testing a custom key name"
   skills do
     ruby true
     asp false
@@ -40,6 +41,7 @@ Which will generate:
     "state": "NY",
     "zip": 10065
   },
+  "nil": "testing a custom key name",
   "skills": {
     "ruby": true,
     "asp": false
