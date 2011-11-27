@@ -4,60 +4,70 @@ Rails provides an excellent XML Builder by default to build RSS and ATOM feeds, 
 ## Using JSON Builder with Rails
 First, make sure to add the gem to your `Gemfile`.
 
-    gem 'json_builder'
+```ruby
+gem 'json_builder'
+```
 
 Second, make sure your controller responds to `json`:
 
-    class PostsController < ApplicationController
-      respond_to :json
-      
-      def index
-        @posts = Post.all
-        respond_with @posts
-      end
-    end
+```ruby
+class PostsController < ApplicationController
+  respond_to :json
+  
+  def index
+    @posts = Post.all
+    respond_with @posts
+  end
+end
+```
 
 Lastly, create `app/views/posts/index.json_builder` which could look something like:
     
-    posts @posts do |post|
-      id post.id
-      name post.name
-      body post.body
-    end
+```ruby
+posts @posts do |post|
+  id post.id
+  name post.name
+  body post.body
+end
+```
 
 You will get something like:
 
+```json
+{
+  "posts": [
     {
-      "posts": [
-        {
-          "id": 1,
-          "name": "Garrett Bjerkhoel",
-          "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."
-        }, {
-          "id": 2,
-          "name": "John Doe",
-          "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."
-        }
-      ]
+      "id": 1,
+      "name": "Garrett Bjerkhoel",
+      "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."
+    }, {
+      "id": 2,
+      "name": "John Doe",
+      "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."
     }
+  ]
+}
+```
 
 ## Sample Usage
 
-    require 'json_builder'
-    json = JSONBuilder::Compiler.generate {
-      name "Garrett Bjerkhoel"
-      address do
-        street "1143 1st Ave"
-        street2 "Apt 1"
-        city "New York"
-        state "NY"
-        zip 10065
-      end
-      skills do
-        ruby true
-        asp false
-      end
-    }
+```ruby
+require 'json_builder'
+json = JSONBuilder::Compiler.generate {
+  name "Garrett Bjerkhoel"
+  address do
+    street "1143 1st Ave"
+    street2 "Apt 1"
+    city "New York"
+    state "NY"
+    zip 10065
+  end
+  skills do
+    ruby true
+    asp false
+  end
+}
+```
 
 ## Conversions
 
