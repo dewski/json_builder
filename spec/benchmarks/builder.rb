@@ -1,8 +1,7 @@
-$:.push File.expand_path('../../../lib', __FILE__)
 require 'rubygems'
 require 'benchmark'
 require 'builder'
-require 'json_builder/compiler'
+require 'json_builder'
 
 Benchmark.bm do |b|
   b.report('JSONBuilder') do

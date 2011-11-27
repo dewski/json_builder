@@ -226,19 +226,12 @@ end
 ActionView::Base.pretty_print_json = false
 ```
 
-## Conversions
-
-Time - [ISO-8601](http://en.wikipedia.org/wiki/ISO_8601)
-
 ## Speed
 JSON Builder is very fast, it's roughly 3.6 times faster than the core XML Builder based on the [speed benchmark](http://github.com/dewski/json_builder/blob/master/spec/benchmarks/builder.rb).
 
                  user       system      total       real
     JSONBuilder  2.950000   0.010000    2.960000    (2.968790)
         Builder  10.820000  0.040000    10.860000   (10.930497)
-
-## Examples
-See the [examples](http://github.com/dewski/json_builder/tree/master/examples) directory.
 
 ## Note on Patches/Pull Requests
 
