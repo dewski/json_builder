@@ -1,3 +1,4 @@
 json_builder.gemspec
 pkg/*
 .DS_Store
+*.log

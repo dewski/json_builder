@@ -54,7 +54,6 @@ describe "JSONBuilder" do
   end
   
   it "should support adding hash objects" do
-    puts "Hahs"
     json_builder do
       hash_test :garrett => true, :london => "Test"
     end.should == '{"hash_test": {"garrett":true,"london":"Test"}}'

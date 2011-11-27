@@ -1,4 +1,3 @@
-users @users do |user|
-  id user.id
-  name user.name
+testing ["1", 2, true] do |t|
+  variable t
 end
