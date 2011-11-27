@@ -13,7 +13,7 @@ module JSONBuilder
       if argument.is_a?(Array)
         @value = Elements.new(argument, &block)
       else
-        @value = Value.new(*argument, &block)
+        @value = Value.new(argument, &block)
       end
     end
     
