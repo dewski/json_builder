@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     json_builder (3.0.0)
+      activesupport (>= 2.0.0)
 
 GEM
   remote: http://rubygems.org/
@@ -116,5 +117,6 @@ DEPENDENCIES
   capybara (>= 0.4.0)
   json_builder!
   rails (= 3.0.10)
+  rspec
   rspec-rails (>= 2.0.0.beta)
   sqlite3

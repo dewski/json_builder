@@ -21,7 +21,7 @@ json = JSONBuilder::Compiler.generate do
     ruby true
     asp false
   end
-  hash do
+  longstring do
     # Could be a highly intensive process that only returns a string
     "12345" * 25
   end
@@ -46,7 +46,7 @@ Which will generate:
     "ruby": true,
     "asp": false
   },
-  "hash": "1234512345123451234512345..."
+  "longstring": "1234512345123451234512345..."
 }
 ```
 
