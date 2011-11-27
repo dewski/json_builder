@@ -53,6 +53,21 @@ describe "JSONBuilder" do
     end.should == '{"users": [{"id": 1, "likes": [{"l": 1, "d": "test"}, {"l": 2, "d": "testtest"}]}, {"id": 2, "likes": [{"l": 2, "d": "test"}, {"l": 4, "d": "testtest"}]}]}'
   end
   
+  it "should support custom key names" do
+    json_builder do
+      def with_method
+        "nope"
+      end
+      
+      key :custom_key, 1
+      key 'as_string', true
+      nested do
+        key "deep_down", -1
+      end
+      key with_method, "chuck"
+    end.should == '{"custom_key": 1, "as_string": true, "nested": {"deep_down": -1}, "nope": "chuck"}'
+  end
+  
   it "should support adding hash objects" do
     json_builder do
       hash_test :garrett => true, :london => "Test"

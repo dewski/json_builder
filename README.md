@@ -162,6 +162,70 @@ You will get something like:
 }
 ```
 
+### Including JSONP callbacks
+
+Out of the box JSON Builder supports JSONP requests when used within a Rails project just by using the callback parameter. For instance, if you requested `/users.json?callback=myjscallback`, you'll get a callback wrapping the response:
+
+```json
+myjscallback([
+  {
+    "name": "Garrett Bjerkhoel"
+  },
+  {
+    "name": "John Doe"
+  }
+])
+```
+
+To be able to turn off this functionality, you can do it per-environment, or globally:
+
+#### Per Environment
+
+```ruby
+Spyder::Application.configure do
+  config.action_view.json_callback = false
+end
+```
+
+#### Globally
+
+```ruby
+ActionView::Base.json_callback = false
+```
+
+### Pretty Print Output
+
+Out of the box JSON Builder supports pretty printing the JSON for the development environment, the rest have it turned off for performance reasons. If you'd like to enable or disable pretty printing you can do it within your environment file or you can do it globally.
+
+With pretty print on:
+
+```json
+{
+  "name": "Garrett Bjerkhoel",
+  "email": "spam@garrettbjerkhoel.com"
+}
+```
+
+Without:
+
+```json
+{"name": "Garrett Bjerkhoel", "email": "spam@garrettbjerkhoel.com"}
+```
+
+#### Per Environment
+
+```ruby
+Spyder::Application.configure do
+  config.action_view.pretty_print_json = false
+end
+```
+
+#### Globally
+
+```ruby
+ActionView::Base.pretty_print_json = false
+```
+
 ## Conversions
 
 Time - [ISO-8601](http://en.wikipedia.org/wiki/ISO_8601)
