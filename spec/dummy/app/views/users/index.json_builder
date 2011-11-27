@@ -1,0 +1,4 @@
+users @users do |user|
+  id user.id
+  name user.name
+end

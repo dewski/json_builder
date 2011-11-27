@@ -6,12 +6,6 @@ First, make sure to add the gem to your `Gemfile`.
 
     gem 'json_builder'
 
-Not required, but if you'd like to run the generated JSON through a prettifier for debugging reasons, just set `config.action_view.pretty_print_json` to `true` in your environment config. It defaults to false for speed.
-
-    Your::Application.configure do
-      config.action_view.pretty_print_json = true
-    end
-
 Second, make sure your controller responds to `json`:
 
     class PostsController < ApplicationController
@@ -25,14 +19,10 @@ Second, make sure your controller responds to `json`:
 
 Lastly, create `app/views/posts/index.json_builder` which could look something like:
     
-    json.posts do
-      json.array! @posts do
-        @posts.each do |user|
-          json.array_item! do
-            render :partial => 'post', :locals => { :json => json, :post => post }
-          end
-        end
-      end
+    posts @posts do |post|
+      id post.id
+      name post.name
+      body post.body
     end
 
 You will get something like:
@@ -54,37 +44,35 @@ You will get something like:
 ## Sample Usage
 
     require 'json_builder'
-    json = JSONBuilder::Generator.new
-
-    json.name "Garrett Bjerkhoel"
-    json.address do
-      json.street "1143 1st Ave"
-      json.street2 "Apt 1"
-      json.city "New York"
-      json.state "NY"
-      json.zip 10065
-    end
-    json.skills do
-      json.ruby true
-      json.asp false
-    end
-    
-    puts json.compile!
+    json = JSONBuilder::Compiler.generate {
+      name "Garrett Bjerkhoel"
+      address do
+        street "1143 1st Ave"
+        street2 "Apt 1"
+        city "New York"
+        state "NY"
+        zip 10065
+      end
+      skills do
+        ruby true
+        asp false
+      end
+    }
 
 ## Conversions
 
 Time - [ISO-8601](http://en.wikipedia.org/wiki/ISO_8601)
 
 ## Speed
-JSON Builder is very fast, it's roughly 6 times faster than the core XML Builder based on the [speed benchmark](http://github.com/dewski/json_builder/blob/master/test/benchmarks/speed.rb).
+JSON Builder is very fast, it's roughly 3.6 times faster than the core XML Builder based on the [speed benchmark](http://github.com/dewski/json_builder/blob/master/spec/benchmarks/builder.rb).
 
-                            user       system     total     real
-    JSON Builder            0.700000   0.030000   0.730000  (0.724748)
-    JSON Builder Pretty     1.080000   0.060000   1.140000  (1.149416)
-    XML Builder             4.700000   0.110000   4.810000  (4.822932)
+
+                 user       system      total       real
+    JSONBuilder  2.950000   0.010000    2.960000    (2.968790)
+        Builder  10.820000  0.040000    10.860000   (10.930497)
 
 ## Examples
 See the [examples](http://github.com/dewski/json_builder/tree/master/examples) directory.
 
 ## Copyright
-Copyright © 2010 Garrett Bjerkhoel. See [MIT-LICENSE](http://github.com/dewski/json_builder/blob/master/MIT-LICENSE) for details.
+Copyright © 2011 Garrett Bjerkhoel. See [MIT-LICENSE](http://github.com/dewski/json_builder/blob/master/MIT-LICENSE) for details.

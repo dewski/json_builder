@@ -1,3 +1,5 @@
+require 'active_support/time'
+
 module JSONBuilder
   class Value
     attr_accessor :value
@@ -20,7 +22,7 @@ module JSONBuilder
       case @value
       when String, TrueClass, FalseClass then @value.inspect
       when NilClass then 'null'
-      when Time then @value.respond_to?(:iso8601) ? @value.iso8601.inspect : @value.strftime("%FT%TZ").inspect
+      when Time, Date, DateTime then @value.iso8601.inspect
       else @value.to_s
       end
     end
