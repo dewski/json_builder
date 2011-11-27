@@ -27,6 +27,7 @@ RSpec.configure do |config|
   # methods or matchers
   require 'rspec/expectations'
   config.include RSpec::Matchers
+  config.include JSONBuilder::RSpecHelpers
 
   # == Mock Framework
   config.mock_with :rspec
