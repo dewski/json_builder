@@ -1,5 +1,5 @@
 # JSON Builder
-Rails provides an excellent XML Builder by default to build RSS and ATOM feeds, but nothing to help you build complex and custom JSON data structures. The standard `to_json` works well, but can get very verbose when you need full control of what is generated. JSON Builder hopes to solve that problem.
+Rails provides an excellent XML Builder by default to build RSS and ATOM feeds, but nothing to help you build complex and custom JSON data structures. The standard `to_json` works just fine, but can get very verbose when you need full control of what is generated and performance is a factor. JSON Builder hopes to solve that problem.
 
 ## Sample Usage
 
@@ -48,6 +48,33 @@ Which will generate:
 }
 ```
 
+If you'd like to just generate an array, you can do the following:
+
+```ruby
+array ["Garrett Bjerkhoel", "John Doe"] do |name|
+  first, last = name.split(' ')
+  first first
+  last last
+end
+```
+
+Which will generate:
+
+```json
+[
+  {
+    "first": "Garrett",
+    "last": "Bjerkhoel"
+  },
+  {
+    "first": "John",
+    "last": "Doe"
+  }
+]
+```
+
+Just a note, if you use an array block, all other builders will be ignored outside of that block.
+
 ## Using JSON Builder with Rails
 First, make sure to add the gem to your `Gemfile`.
 
@@ -71,10 +98,10 @@ end
 Lastly, create `app/views/users/index.json_builder` which could look something like:
     
 ```ruby
-total @users.length
-page @users.page
+count @users.count
+current_page @users.current_page
 per_page @users.per_page
-total_pages @users.total_pages
+num_pages @users.num_pages
 results @users do |user|
   id user.id
   name user.name

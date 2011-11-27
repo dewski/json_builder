@@ -11,7 +11,7 @@ module JSONBuilder
 
       argument = args.shift
       if argument.is_a?(Array)
-        @value = Elements.new(argument.compact, &block)
+        @value = Elements.new(argument, &block)
       else
         @value = Value.new(*argument, &block)
       end
