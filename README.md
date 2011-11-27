@@ -50,7 +50,7 @@ Which will generate:
 }
 ```
 
-If you'd like to just generate an array, you can do the following:
+If you'd like to just generate an array:
 
 ```ruby
 array ["Garrett Bjerkhoel", "John Doe"] do |name|
@@ -60,7 +60,7 @@ array ["Garrett Bjerkhoel", "John Doe"] do |name|
 end
 ```
 
-Which will generate:
+Which will output the following:
 
 ```json
 [
@@ -75,7 +75,7 @@ Which will generate:
 ]
 ```
 
-Just a note, if you use an array block, all other builders will be ignored outside of that block.
+Just a note, if you use an array block, all other builder methods will be ignored.
 
 ## Using JSON Builder with Rails
 First, make sure to add the gem to your `Gemfile`.
@@ -164,7 +164,7 @@ You will get something like:
 
 ### Including JSONP callbacks
 
-Out of the box JSON Builder supports JSONP requests when used within a Rails project just by using the callback parameter. For instance, if you requested `/users.json?callback=myjscallback`, you'll get a callback wrapping the response:
+Out of the box JSON Builder supports JSONP callbacks when used within a Rails project just by using the callback parameter. For instance, if you requested `/users.json?callback=myjscallback`, you'll get a callback wrapping the response:
 
 ```json
 myjscallback([
