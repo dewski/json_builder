@@ -5,7 +5,7 @@ module JSONBuilder
     def initialize(items, &block)
       @compilers = []
       
-      items.compact.each do |item|
+      items.each do |item|
         @compilers << Value.new(item, &block)
       end
     end

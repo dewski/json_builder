@@ -1,3 +1,4 @@
 testing ["1", 2, true] do |t|
   variable t
 end
+name @user.name

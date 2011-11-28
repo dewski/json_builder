@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
+    require 'ostruct'
+    @user = OpenStruct.new(:name => 'Garrett Bjerkhoel')
   end
 end

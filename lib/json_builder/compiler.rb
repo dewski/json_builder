@@ -19,10 +19,12 @@ module JSONBuilder
     attr_accessor :pretty_print
     
     def initialize(options={})
-      @members = []
-      @scope = options[:scope]
-      @callback = options[:callback]
-      @pretty_print = options[:pretty]
+      @_members = []
+      @_scope = options[:scope]
+      @_callback = options[:callback] || true
+      @_pretty_print = options[:pretty] || false
+      
+      copy_instance_variables_from(@_scope, [:@assigns, :@helpers])
     end
     
     def compile(*args, &block)
@@ -30,34 +32,39 @@ module JSONBuilder
     end
     
     def array(items, &block)
-      @array = Elements.new(items, &block)
+      @_array = Elements.new(items, &block)
     end
     
     # Need to return a Key instance to allow for arrays to be handled appropriately
     def method_missing(key, *args, &block)
       member = Member.new(key, *args, &block)
-      @members << member
+      @_members << member
       member
     end
     alias_method :key, :method_missing
     
     # Once all nodes are compiled, build the string
     def to_s
-      include_callback @array ? @array.to_s : "{#{@members.collect(&:to_s).join(', ')}}"
+      include_callback @_array ? @_array.to_s : "{#{@_members.collect(&:to_s).join(', ')}}"
     end
     
     private
     
     def include_callback(json)
-      @callback && request_params[:callback] ? "#{request_params[:callback]}(#{pretty_print(json)})" : pretty_print(json)
+      @_callback && request_params[:callback] ? "#{request_params[:callback]}(#{pretty_print(json)})" : pretty_print(json)
     end
     
     def pretty_print(json)
-      @pretty_print ? JSON.pretty_generate(JSON[json]) : json
+      @_pretty_print ? JSON.pretty_generate(JSON[json]) : json
     end
     
     def request_params
-      @scope.respond_to?(:params) ? @scope.params : {}
+      @_scope.respond_to?(:params) ? @_scope.params : {}
+    end
+    
+    def copy_instance_variables_from(object, exclude = []) #:nodoc:
+      vars = object.instance_variables.map(&:to_s) - exclude.map(&:to_s)
+      vars.each { |name| instance_variable_set(name, object.instance_variable_get(name)) }
     end
   end
 end
