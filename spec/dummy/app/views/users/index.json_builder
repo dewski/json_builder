@@ -1,16 +1,14 @@
-id 1
-testing ["1", 2, true] do |t|
-  id t
-  variable t
-  url users_path
+array @users do |user|
+  id user.id
+  name user.name
+  email { user.email }
+  url user_path(user)
   help included_helper
-  name @user.name
-  code { root_path }
+  created_at user.created_at
+  updated_at user.updated_at
   deep do
     node included_helper
     url root_path
   end
 end
-url users_path
-name @user.name
 # last line comment without \n

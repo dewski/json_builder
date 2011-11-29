@@ -10,7 +10,7 @@ module JSONBuilder
       @key = key
       
       argument = args.shift
-      if argument.is_a?(Array)
+      if argument.is_a?(Array) || defined?(ActiveRecord::Relation) && argument.is_a?(ActiveRecord::Relation)
         @value = Elements.new(scope, argument, &block)
       else
         @value = Value.new(scope, argument, &block)
