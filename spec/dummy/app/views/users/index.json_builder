@@ -13,3 +13,4 @@ testing ["1", 2, true] do |t|
 end
 url users_path
 name @user.name
+# last line comment without \n

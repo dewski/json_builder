@@ -9,6 +9,7 @@ require 'json_builder'
 json = JSONBuilder::Compiler.generate do
   name "Garrett Bjerkhoel"
   email "spam@garrettbjerkhoel.com"
+  url root_path
   address do
     street "1234 1st Ave"
     street2 "Apt 1"
@@ -34,6 +35,7 @@ Which will generate:
 {
   "name": "Garrett Bjerkhoel",
   "email": "spam@garrettbjerkhoel.com",
+  "url": "/",
   "address": {
     "street": "1234 1st Ave",
     "street2": "Apt 1",
@@ -108,6 +110,7 @@ results @users do |user|
   id user.id
   name user.name
   body user.body
+  url user_url(url)
   links user.links do |link|
     url link.url
     visits link.visits
@@ -129,6 +132,7 @@ You will get something like:
       "id": 1,
       "name": "Garrett Bjerkhoel",
       "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.",
+      "url": "http://example.com/users/garrett-bjerkhoel",
       "links": [
         {
           "url": "http://github.com/",
@@ -145,6 +149,7 @@ You will get something like:
       "id": 2,
       "name": "John Doe",
       "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.",
+      "url": "http://example.com/users/john-doe",
       "links": [
         {
           "url": "http://google.com/",

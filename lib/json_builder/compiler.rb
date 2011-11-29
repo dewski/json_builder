@@ -38,7 +38,7 @@ module JSONBuilder
     
     # Need to return a Key instance to allow for arrays to be handled appropriately
     def method_missing(key, *args, &block)
-      if @_scope.respond_to?(key)
+      if @_scope.respond_to?(key) && !ignore_scope_methods.include?(key)
         @_scope.send(key, *args, &block)
       else
         member = Member.new(key, @_scope, *args, &block)
@@ -70,6 +70,11 @@ module JSONBuilder
     def copy_instance_variables_from(object, exclude = []) #:nodoc:
       vars = object.instance_variables.map(&:to_s) - exclude.map(&:to_s)
       vars.each { |name| instance_variable_set(name, object.instance_variable_get(name)) }
+    end
+    
+    # There are some special methods that need to be ignored that may be matched within +@_scope+.
+    def ignore_scope_methods
+      [:id]
     end
   end
 end
