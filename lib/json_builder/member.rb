@@ -6,14 +6,14 @@ module JSONBuilder
     attr_accessor :key
     attr_accessor :value
     
-    def initialize(key, *args, &block)
+    def initialize(key, scope, *args, &block)
       @key = key
-
+      
       argument = args.shift
       if argument.is_a?(Array)
-        @value = Elements.new(argument, &block)
+        @value = Elements.new(scope, argument, &block)
       else
-        @value = Value.new(argument, &block)
+        @value = Value.new(scope, argument, &block)
       end
     end
     

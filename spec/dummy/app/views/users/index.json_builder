@@ -1,4 +1,15 @@
+id 1
 testing ["1", 2, true] do |t|
+  id t
   variable t
+  url users_path
+  help included_helper
+  name @user.name
+  code { root_path }
+  deep do
+    node included_helper
+    url root_path
+  end
 end
+url users_path
 name @user.name

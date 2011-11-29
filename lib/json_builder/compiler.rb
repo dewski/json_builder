@@ -1,4 +1,4 @@
-require 'blankslate' unless defined? BlankSlate
+require 'blankslate' unless defined?(BlankSlate)
 require 'json_builder/member'
 
 module JSONBuilder
@@ -24,7 +24,8 @@ module JSONBuilder
       @_callback = options[:callback] || true
       @_pretty_print = options[:pretty] || false
       
-      copy_instance_variables_from(@_scope, [:@assigns, :@helpers])
+      # Only copy instance variables if there is a scope and presence of Rails
+      copy_instance_variables_from(@_scope) if @_scope
     end
     
     def compile(*args, &block)
@@ -32,14 +33,18 @@ module JSONBuilder
     end
     
     def array(items, &block)
-      @_array = Elements.new(items, &block)
+      @_array = Elements.new(@_scope, items, &block)
     end
     
     # Need to return a Key instance to allow for arrays to be handled appropriately
     def method_missing(key, *args, &block)
-      member = Member.new(key, *args, &block)
-      @_members << member
-      member
+      if @_scope.respond_to?(key)
+        @_scope.send(key, *args, &block)
+      else
+        member = Member.new(key, @_scope, *args, &block)
+        @_members << member
+        member
+      end
     end
     alias_method :key, :method_missing
     

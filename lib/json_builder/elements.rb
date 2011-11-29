@@ -2,11 +2,11 @@ module JSONBuilder
   class Elements
     attr_accessor :compilers
     
-    def initialize(items, &block)
+    def initialize(scope, items, &block)
       @compilers = []
       
       items.each do |item|
-        @compilers << Value.new(item, &block)
+        @compilers << Value.new(scope, item, &block)
       end
     end
     

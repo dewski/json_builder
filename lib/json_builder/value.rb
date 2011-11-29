@@ -4,10 +4,10 @@ module JSONBuilder
   class Value
     attr_accessor :value
     
-    def initialize(arg, &block)
+    def initialize(scope, arg, &block)
       if block_given?
-        @value = Compiler.new
-        compiled = @value.compile(*arg, &block)
+        @value = Compiler.new(:scope => scope)
+        compiled = @value.compile(arg, &block)
         
         # For the use case that the passed in block returns a non-member object
         # or normal Ruby object
