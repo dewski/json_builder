@@ -18,9 +18,11 @@ if defined?(Rails) && Rails.version =~ /^2/
       class JSONBuilder < TemplateHandler
         include Compilable
 
-        def compile(template)
-          "::JSONBuilder::Compiler.generate(:scope => self, :pretty => ActionView::Base.pretty_print_json, :callback => ActionView::Base.json_callback) {#{template.source}};"
-        end
+        def compile(template) %{
+          ::JSONBuilder::Compiler.generate(:scope => self, :pretty => ActionView::Base.pretty_print_json, :callback => ActionView::Base.json_callback) {
+            #{template.source}
+          }
+        } end
       end
     end
   end
@@ -43,7 +45,11 @@ if defined?(Rails) && Rails.version =~ /^3/
             template.source
           end
 
-          "::JSONBuilder::Compiler.generate(:scope => self, :pretty => ActionView::Base.pretty_print_json, :callback => ActionView::Base.json_callback) {#{source}};"
+          %{
+            ::JSONBuilder::Compiler.generate(:scope => self, :pretty => ActionView::Base.pretty_print_json, :callback => ActionView::Base.json_callback) {
+              #{template.source}
+            }
+          }
         end
       end
     end
