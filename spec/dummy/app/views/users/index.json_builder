@@ -7,6 +7,7 @@ array @users do |user|
   created_at user.created_at
   updated_at user.updated_at
   deep do
+    key :included_helper, included_helper
     node included_helper
     url root_path
   end

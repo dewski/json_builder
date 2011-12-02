@@ -37,16 +37,19 @@ module JSONBuilder
     end
     
     # Need to return a Key instance to allow for arrays to be handled appropriately
-    def method_missing(key, *args, &block)
-      if @_scope.respond_to?(key) && !ignore_scope_methods.include?(key)
-        @_scope.send(key, *args, &block)
+    def method_missing(key_name, *args, &block)
+      if @_scope.respond_to?(key_name) && !ignore_scope_methods.include?(key_name)
+        @_scope.send(key_name, *args, &block)
       else
-        member = Member.new(key, @_scope, *args, &block)
-        @_members << member
-        member
+        key(key_name, *args, &block)
       end
     end
-    alias_method :key, :method_missing
+    
+    def key(key_name, *args, &block)
+      member = Member.new(key_name, @_scope, *args, &block)
+      @_members << member
+      member
+    end
     
     # Once all nodes are compiled, build the string
     def to_s

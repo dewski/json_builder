@@ -36,7 +36,7 @@ describe "JSONBuilder" do
       date Date.new(2011, 11, 23)
       date_time DateTime.new(2001, 2, 3, 4, 5, 6)
       timed Time.at(1322427883)
-    end.should == '{"date": "2011-11-23", "date_time": "2001-02-03T04:05:06+00:00", "timed": "2011-11-27T21:04:43+00:00"}'
+    end.should == '{"date": "2011-11-23", "date_time": "2001-02-03T04:05:06+00:00", "timed": "2011-11-27T13:04:43-08:00"}'
   end
   
   it "should support multiple nestings" do
@@ -60,12 +60,13 @@ describe "JSONBuilder" do
       end
       
       key :custom_key, 1
+      key :with_method, with_method
       key 'as_string', true
       nested do
         key "deep_down", -1
       end
       key with_method, "chuck"
-    end.should == '{"custom_key": 1, "as_string": true, "nested": {"deep_down": -1}, "nope": "chuck"}'
+    end.should == '{"custom_key": 1, "with_method": "nope", "as_string": true, "nested": {"deep_down": -1}, "nope": "chuck"}'
   end
   
   it "should support adding hash objects" do
