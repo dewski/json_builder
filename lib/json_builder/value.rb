@@ -23,7 +23,7 @@ module JSONBuilder
       when Hash then @value.to_json
       when NilClass then 'null'
       when Time, Date, DateTime then @value.iso8601.inspect
-      else @value.to_s
+      else @value.to_s.inspect
       end
     end
   end
