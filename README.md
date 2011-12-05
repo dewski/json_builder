@@ -239,6 +239,17 @@ JSON Builder is very fast, it's roughly 3.6 times faster than the core XML Build
     JSONBuilder  2.950000   0.010000    2.960000    (2.968790)
         Builder  10.820000  0.040000    10.860000   (10.930497)
 
+## Other JSON Builders
+
+There are quite a few other alternatives to JSON Builder, each good in their own way with different DSL's and design approaches that are worth checking out:
+
+ * [jbuilder](https://github.com/rails/jbuilder)
+ * [RABL](https://github.com/nesquena/rabl)
+ * [Tequila](https://github.com/inem/tequila)
+ * [Argonaut](https://github.com/jbr/argonaut)
+ * [Jsonify](https://github.com/bsiggelkow/jsonify)
+ * [RepresentationView](https://github.com/mdub/representative_view)
+
 ## Note on Patches/Pull Requests
 
 - Fork the project.
