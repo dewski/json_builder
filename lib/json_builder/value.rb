@@ -1,4 +1,4 @@
-require 'active_support/time'
+require 'json_builder/extensions'
 
 module JSONBuilder
   class Value
@@ -18,14 +18,7 @@ module JSONBuilder
     end
     
     def to_s
-      case @value
-      when String, TrueClass, FalseClass then @value.inspect
-      when Hash then @value.to_json
-      when BSON::ObjectId then @value.to_s.inspect
-      when NilClass then 'null'
-      when Time, Date, DateTime then @value.iso8601.inspect
-      else @value.to_s
-      end
+      @value.respond_to?(:to_builder) ? @value.to_builder : @value.to_s
     end
   end
 end
