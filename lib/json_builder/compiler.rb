@@ -8,7 +8,7 @@ module JSONBuilder
         options = args.extract_options!
         compiler = self.new(options)
         compiler.compile(*args, &block)
-        compiler.to_s
+        compiler.finalize
       end
     end
     
@@ -51,9 +51,13 @@ module JSONBuilder
       member
     end
     
+    def finalize
+      include_callback to_s
+    end
+    
     # Once all nodes are compiled, build the string
     def to_s
-      include_callback @_array ? @_array.to_s : "{#{@_members.collect(&:to_s).join(', ')}}"
+      @_array ? @_array.to_s : "{#{@_members.collect(&:to_s).join(', ')}}"
     end
     
     private
