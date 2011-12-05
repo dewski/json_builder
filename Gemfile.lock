@@ -116,6 +116,6 @@ PLATFORMS
 DEPENDENCIES
   capybara (>= 0.4.0)
   json_builder!
-  rails (= 3.0.10)
+  rails (>= 2.0.0)
   rspec-rails (>= 2.0.0.beta)
   sqlite3
