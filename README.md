@@ -111,7 +111,7 @@ results @users do |user|
   id user.id
   name user.name
   body user.body
-  url user_url(url)
+  url user_url(user)
   links user.links do |link|
     url link.url
     visits link.visits
