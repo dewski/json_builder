@@ -1,4 +1,4 @@
-require 'blankslate' unless defined?(BlankSlate)
+require 'json_builder/blankslate'
 require 'json_builder/member'
 
 module JSONBuilder

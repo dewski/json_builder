@@ -14,35 +14,37 @@
 # BlankSlate is useful as a base class when writing classes that
 # depend upon <tt>method_missing</tt> (e.g. dynamic proxies).
 #
-class BlankSlate
-  class << self
+module JSONBuilder
+  class BlankSlate
+    class << self
 
-    # Hide the method named +name+ in the BlankSlate class.  Don't
-    # hide +instance_eval+ or any method beginning with "__".
-    def hide(name)
-      if instance_methods.include?(name.to_s) and
-        name !~ /^(__|instance_eval|instance_exec)/
+      # Hide the method named +name+ in the BlankSlate class.  Don't
+      # hide +instance_eval+ or any method beginning with "__".
+      def hide(name)
+        if instance_methods.include?(name.to_s) and
+          name !~ /^(__|instance_eval|instance_exec)/
+          @hidden_methods ||= {}
+          @hidden_methods[name.to_sym] = instance_method(name)
+          undef_method name
+        end
+      end
+
+      def find_hidden_method(name)
         @hidden_methods ||= {}
-        @hidden_methods[name.to_sym] = instance_method(name)
-        undef_method name
+        @hidden_methods[name] || superclass.find_hidden_method(name)
+      end
+
+      # Redefine a previously hidden method so that it may be called on a blank
+      # slate object.
+      def reveal(name)
+        hidden_method = find_hidden_method(name)
+        fail "Don't know how to reveal method '#{name}'" unless hidden_method
+        define_method(name, hidden_method)
       end
     end
 
-    def find_hidden_method(name)
-      @hidden_methods ||= {}
-      @hidden_methods[name] || superclass.find_hidden_method(name)
-    end
-
-    # Redefine a previously hidden method so that it may be called on a blank
-    # slate object.
-    def reveal(name)
-      hidden_method = find_hidden_method(name)
-      fail "Don't know how to reveal method '#{name}'" unless hidden_method
-      define_method(name, hidden_method)
-    end
+    instance_methods.each { |m| hide(m) }
   end
-
-  instance_methods.each { |m| hide(m) }
 end
 
 ######################################################################
@@ -61,7 +63,7 @@ module Kernel
     def method_added(name)
       result = blank_slate_method_added(name)
       return result if self != Kernel
-      BlankSlate.hide(name)
+      JSONBuilder::BlankSlate.hide(name)
       result
     end
   end
@@ -79,7 +81,7 @@ class Object
     def method_added(name)
       result = blank_slate_method_added(name)
       return result if self != Object
-      BlankSlate.hide(name)
+      JSONBuilder::BlankSlate.hide(name)
       result
     end
 
@@ -102,7 +104,7 @@ class Module
     result = blankslate_original_append_features(mod)
     return result if mod != Object
     instance_methods.each do |name|
-      BlankSlate.hide(name)
+      JSONBuilder::BlankSlate.hide(name)
     end
     result
   end
