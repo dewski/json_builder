@@ -22,7 +22,7 @@ module JSONBuilder
       # hide +instance_eval+ or any method beginning with "__".
       def hide(name)
         if instance_methods.include?(name.to_s) and
-          name !~ /^(__|instance_eval|instance_exec)/
+          name !~ /^(__|instance_eval|instance_exec|instance_variable_set)/
           @hidden_methods ||= {}
           @hidden_methods[name.to_sym] = instance_method(name)
           undef_method name
