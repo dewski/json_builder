@@ -1,4 +1,4 @@
-require 'active_support/time'
+require 'active_support/time_with_zone'
 
 class FalseClass
   def to_builder
