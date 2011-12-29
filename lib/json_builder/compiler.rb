@@ -1,8 +1,7 @@
-require 'blankslate' unless defined?(BlankSlate)
 require 'json_builder/member'
 
 module JSONBuilder
-  class Compiler < BlankSlate
+  class Compiler
     class << self
       def generate(*args, &block)
         options = args.extract_options!
@@ -17,6 +16,8 @@ module JSONBuilder
     attr_accessor :scope
     attr_accessor :callback
     attr_accessor :pretty_print
+    
+    undef_method :id if methods.include? 'id'
     
     def initialize(options={})
       @_members = []

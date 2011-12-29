@@ -36,7 +36,7 @@ describe "JSONBuilder" do
       date Date.new(2011, 11, 23)
       date_time DateTime.new(2001, 2, 3, 4, 5, 6)
       timed Time.at(1322427883)
-    end.should == '{"date": "2011-11-23", "date_time": "2001-02-03T04:05:06+00:00", "timed": "2011-11-27T13:04:43-08:00"}'
+    end.should == '{"date": "2011-11-23T00:00:00", "date_time": "2001-02-03T04:05:06", "timed": "2011-11-27T13:04:43"}'
   end
   
   it "should support multiple nestings" do
