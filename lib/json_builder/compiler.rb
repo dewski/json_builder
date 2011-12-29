@@ -17,6 +17,8 @@ module JSONBuilder
     attr_accessor :callback
     attr_accessor :pretty_print
     
+    undef_method :id if methods.include? 'id'
+    
     def initialize(options={})
       @_members = []
       @_scope = options[:scope]

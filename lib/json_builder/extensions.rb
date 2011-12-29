@@ -1,4 +1,4 @@
-require 'active_support/time_with_zone'
+require 'active_support/all'
 
 class FalseClass
   def to_builder
@@ -32,19 +32,19 @@ end
 
 class Time
   def to_builder
-    self.iso8601.inspect
+    self.strftime("%Y-%m-%dT%H:%M:%S").inspect
   end
 end
 
 class Date
   def to_builder
-    self.iso8601.inspect
+    self.strftime("%Y-%m-%dT%H:%M:%S").inspect
   end
 end
 
 class DateTime
   def to_builder
-    self.iso8601.inspect
+    self.strftime("%Y-%m-%dT%H:%M:%S").inspect
   end
 end
 
