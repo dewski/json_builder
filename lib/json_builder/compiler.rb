@@ -1,8 +1,7 @@
-require 'json_builder/blankslate'
 require 'json_builder/member'
 
 module JSONBuilder
-  class Compiler < BlankSlate
+  class Compiler
     class << self
       def generate(*args, &block)
         options = args.extract_options!
