@@ -259,4 +259,4 @@ There are quite a few other alternatives to JSON Builder, each good in their own
 - Send me a pull request. Bonus points for topic branches.
 
 ## Copyright
-Copyright © 2011 Garrett Bjerkhoel. See [MIT-LICENSE](http://github.com/dewski/json_builder/blob/master/MIT-LICENSE) for details.
+Copyright © 2012 Garrett Bjerkhoel. See [MIT-LICENSE](http://github.com/dewski/json_builder/blob/master/MIT-LICENSE) for details.
