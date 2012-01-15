@@ -16,13 +16,13 @@ class TestCompiler < Test::Unit::TestCase
     end
   end
 
-	def test_support_all_dates
-		assert_builder_json('{"date": "2011-11-23T00:00:00", "date_time": "2001-02-03T04:05:06", "timed": "2012-01-01T00:00:00"}') do
+  def test_support_all_dates
+    assert_builder_json('{"date": "2011-11-23T00:00:00", "date_time": "2001-02-03T04:05:06", "timed": "2012-01-01T00:00:00"}') do
       date Date.new(2011, 11, 23)
       date_time DateTime.new(2001, 2, 3, 4, 5, 6)
       timed Time.utc(2012)
-		end
-	end
+    end
+  end
   
   def test_should_support_all_datatypes
     assert_builder_json('{"integer": 1, "mega_integer": 100000000, "float": 13.37, "true_class": true, "false_class": false, "missing_nil": null}') do
