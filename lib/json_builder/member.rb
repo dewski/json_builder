@@ -3,10 +3,11 @@ require 'json_builder/elements'
 
 module JSONBuilder
   class Member
-    attr_accessor :key
-    attr_accessor :value
+    attr_accessor :key, :value
     
     def initialize(key, scope, *args, &block)
+      raise MissingKeyError if key.nil?
+      
       @key = key
       
       argument = args.shift

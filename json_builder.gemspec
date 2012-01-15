@@ -16,8 +16,4 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   
   s.add_dependency "activesupport", ">= 2.0.0"
-  s.add_development_dependency "rspec-rails", ">= 2.0.0.beta"
-  s.add_development_dependency "rails", ">= 2.0.0"
-  s.add_development_dependency "sqlite3"
-  s.add_development_dependency "capybara", ">= 0.4.0"
 end

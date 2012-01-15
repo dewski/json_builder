@@ -1,3 +1,7 @@
 source "http://rubygems.org"
 
 gemspec
+
+group :test do
+	gem 'i18n'
+end

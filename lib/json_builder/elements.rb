@@ -3,6 +3,8 @@ module JSONBuilder
     attr_accessor :compilers
     
     def initialize(scope, items, &block)
+      raise InvalidArgument.new('items does not respond to each') unless items.respond_to?(:each)
+      
       @compilers = []
       
       items.each do |item|
