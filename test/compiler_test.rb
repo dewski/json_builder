@@ -12,7 +12,7 @@ class TestCompiler < Test::Unit::TestCase
         true
       end
       
-      name "Garrett Bjerkhoel"
+      name 'Garrett Bjerkhoel'
       valid valid?
     end
   end
@@ -61,13 +61,13 @@ class TestCompiler < Test::Unit::TestCase
       key 'as_string', true
       nested do
         def custom
-          "custom"
+          'custom'
         end
         
-        key "deep_down", -1
+        key 'deep_down', -1
         key custom, true
       end
-      key with_method, "chuck"
+      key with_method, 'chuck'
     end
   end
 
