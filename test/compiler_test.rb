@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'active_support/ordered_hash'
 
 class TestCompiler < Test::Unit::TestCase
   def assert_builder_json(json, *args, &block)
@@ -71,8 +72,8 @@ class TestCompiler < Test::Unit::TestCase
   end
 
   def test_adding_hash_objects
-    assert_builder_json('{"hash_test": {"garrett":true,"london":"Test"}}') do
-      hash_test :garrett => true, :london => "Test"
+    assert_builder_json('{"hash_test": {"garrett":true}}') do
+      hash_test :garrett => true
     end
   end
 end
