@@ -37,8 +37,8 @@ class TestValue < Test::Unit::TestCase
     assert_equal "test", value(:test)
   end
 
-  def test_symbol_value
-    assert_equal '"2012-01-15T14:38:55"', value(Time.at(1326656335))
+  def test_time_value
+    assert_equal '"2012-01-01T00:00:00"', value(Time.utc(2012))
   end
 
   def test_date_value

@@ -17,6 +17,7 @@ module JSONBuilder
     attr_accessor :callback
     attr_accessor :pretty_print
     
+    # Needed to allow for the id key to be used
     undef_method :id if methods.include? 'id'
     
     def initialize(options={})
