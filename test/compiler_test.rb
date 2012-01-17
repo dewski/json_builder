@@ -70,6 +70,12 @@ class TestCompiler < Test::Unit::TestCase
       key with_method, 'chuck'
     end
   end
+  
+  def test_support_custom_classes
+    assert_builder_json('{"hello": "olleh"}') do
+      hello Dozer.new('hello')
+    end
+  end
 
   def test_adding_hash_objects
     assert_builder_json('{"hash_test": {"garrett":true}}') do

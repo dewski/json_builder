@@ -40,4 +40,8 @@ class TestExtensions < Test::Unit::TestCase
   def test_bson_objectid_value
     assert_respond_to BSON::ObjectId.new, :to_builder
   end
+  
+  def test_custom_class
+    assert_respond_to Dozer.new('hello'), :to_builder
+  end
 end

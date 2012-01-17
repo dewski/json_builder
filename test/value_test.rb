@@ -52,4 +52,8 @@ class TestValue < Test::Unit::TestCase
   def test_hash_value
     assert_equal '{"oh":"boy"}', value(:oh => :boy)
   end
+
+  def test_custom_class
+    assert_equal '"olleh"', value(Dozer.new('hello'))
+  end
 end

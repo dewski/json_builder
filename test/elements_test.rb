@@ -9,8 +9,8 @@ class TestElements < Test::Unit::TestCase
     assert_elements_equal '[{"woot":true}]', [{ :woot => true }]
   end
   
-  def test_array_hash
-    assert_elements_equal '[{"woot":true}, {"hi":"ruby"}]', [{ :woot => true }, { :hi => :ruby }]
+  def test_custom_class_objects
+    assert_elements_equal '["olleh", "eybdoog"]', [Dozer.new('hello'), Dozer.new('goodbye')]
   end
   
   def test_raises_invalid_argument

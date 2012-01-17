@@ -8,3 +8,15 @@ $LOAD_PATH.unshift dir + '/../lib'
 $TESTING = true
 require 'test/unit'
 require 'json_builder'
+
+class Dozer
+  attr_accessor :value
+  
+  def initialize(value)
+    @value = value
+  end
+  
+  def to_builder
+    @value.reverse.inspect
+  end
+end
