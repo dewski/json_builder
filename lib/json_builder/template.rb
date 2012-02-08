@@ -2,7 +2,7 @@ module ActionView #:nodoc:
   class Base
     cattr_accessor :pretty_print_json
     @@pretty_print_json = defined?(Rails) && Rails.env.development?
-    
+
     cattr_accessor :json_callback
     @@json_callback = true
   end
