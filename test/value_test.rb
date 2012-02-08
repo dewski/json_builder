@@ -38,15 +38,16 @@ class TestValue < Test::Unit::TestCase
   end
 
   def test_time_value
-    assert_equal '"2012-01-01T00:00:00"', value(Time.utc(2012))
+    assert_equal '"2012-01-01T00:00:00Z"', value(Time.utc(2012))
   end
 
   def test_date_value
-    assert_equal '"2012-01-01T00:00:00"', value(Date.parse('2012-01-01'))
+    # This will be the local time zone offset, hence the wildcard.
+    assert_match /"2012-01-01T00:00:00.*/, value(Date.parse('2012-01-01'))
   end
 
   def test_date_time_value
-    assert_equal '"2012-01-01T00:00:00"', value(DateTime.parse('2012-01-01'))
+    assert_equal '"2012-01-01T00:00:00Z"', value(DateTime.parse('2012-01-01'))
   end
 
   def test_hash_value
