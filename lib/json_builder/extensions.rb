@@ -32,19 +32,19 @@ end
 
 class Time
   def to_builder
-    self.strftime("%Y-%m-%dT%H:%M:%S").inspect
+    iso8601.inspect
   end
 end
 
 class Date
   def to_builder
-    self.strftime("%Y-%m-%dT%H:%M:%S").inspect
+    to_time.iso8601.inspect
   end
 end
 
 class DateTime
   def to_builder
-    self.strftime("%Y-%m-%dT%H:%M:%S").inspect
+    to_time.iso8601.inspect
   end
 end
 

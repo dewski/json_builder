@@ -18,11 +18,13 @@ class TestCompiler < Test::Unit::TestCase
   end
 
   def test_support_all_dates
-    assert_builder_json('{"date": "2011-11-23T00:00:00", "date_time": "2001-02-03T04:05:06", "timed": "2012-01-01T00:00:00"}') do
+    actual = JSONBuilder::Compiler.generate do
       date Date.new(2011, 11, 23)
       date_time DateTime.new(2001, 2, 3, 4, 5, 6)
       timed Time.utc(2012)
     end
+    # The date will have the local time zone offset, hence the wildcard.
+    assert_match(%r{\{"date": "2011-11-23T00:00:00.*", "date_time": "2001-02-03T04:05:06Z", "timed": "2012-01-01T00:00:00Z"\}}, actual)
   end
   
   def test_should_support_all_datatypes
