@@ -30,6 +30,12 @@ class NilClass
   end
 end
 
+class ActiveSupport::TimeWithZone
+  def to_builder
+    iso8601.inspect
+  end
+end
+
 class Time
   def to_builder
     iso8601.inspect
