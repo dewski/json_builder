@@ -47,7 +47,7 @@ if defined?(Rails) && Rails.version =~ /^3/
 
           %{
             ::JSONBuilder::Compiler.generate(:scope => self, :pretty => ActionView::Base.pretty_print_json, :callback => ActionView::Base.json_callback) {
-              #{template.source}
+              #{source}
             }
           }
         end
