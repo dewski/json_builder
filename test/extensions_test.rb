@@ -25,6 +25,10 @@ class TestExtensions < Test::Unit::TestCase
     assert_respond_to nil, :to_builder
   end
   
+  def test_time_with_zone_value
+    assert_respond_to Time.zone.now, :to_builder
+  end
+
   def test_time_value
     assert_respond_to Time.utc(2012), :to_builder
   end
