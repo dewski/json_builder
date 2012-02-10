@@ -14,7 +14,7 @@ end
 
 class String
   def to_builder
-    self.inspect
+    self.to_json
   end
 end
 
