@@ -30,9 +30,11 @@ class NilClass
   end
 end
 
-class ActiveSupport::TimeWithZone
-  def to_builder
-    iso8601.inspect
+module ActiveSupport
+  class TimeWithZone
+    def to_builder
+      iso8601.inspect
+    end
   end
 end
 

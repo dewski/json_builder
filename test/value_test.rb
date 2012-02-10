@@ -42,12 +42,12 @@ class TestValue < Test::Unit::TestCase
   end
 
   def test_time_with_zone_value
-    Time.zone = "CET"
+    Time.zone = 'CET'
     assert_equal '"2012-01-01T00:00:00+01:00"', value(Time.zone.local(2012))
   end
 
+  # This will be the local time zone offset, hence the wildcard.
   def test_date_value
-    # This will be the local time zone offset, hence the wildcard.
     assert_match /"2012-01-01T00:00:00.*/, value(Date.parse('2012-01-01'))
   end
 

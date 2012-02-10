@@ -3,7 +3,6 @@ PATH
   specs:
     json_builder (3.0.7)
       activesupport (>= 2.0.0)
-      tzinfo
 
 GEM
   remote: http://rubygems.org/
@@ -22,3 +21,4 @@ DEPENDENCIES
   i18n
   json_builder!
   rake
+  tzinfo
