@@ -2,25 +2,25 @@ require 'active_support/all'
 
 class FalseClass
   def to_builder
-    self.inspect
+    inspect
   end
 end
 
 class TrueClass
   def to_builder
-    self.inspect
+    inspect
   end
 end
 
 class String
   def to_builder
-    self.inspect
+    inspect
   end
 end
 
 class Hash
   def to_builder
-    self.to_json
+    to_json
   end
 end
 
@@ -51,7 +51,7 @@ end
 module BSON
   class ObjectId
     def to_builder
-      self.to_s.inspect
+      to_s.inspect
     end
   end
 end
