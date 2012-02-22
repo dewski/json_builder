@@ -104,9 +104,9 @@ Lastly, create `app/views/users/index.json_builder` which could look something l
     
 ```ruby
 count @users.count
-current_page @users.current_page
+page @users.current_page
 per_page @users.per_page
-num_pages @users.num_pages
+pages_count @users.num_pages
 results @users do |user|
   id user.id
   name user.name
@@ -124,10 +124,10 @@ You will get something like:
 
 ```json
 {
-  "total": 10,
+  "count": 10,
   "page": 1,
   "per_page": 2,
-  "total_pages": 5,
+  "pages_count": 5,
   "results": [
     {
       "id": 1,
