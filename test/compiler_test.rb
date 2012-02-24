@@ -13,7 +13,7 @@ class TestCompiler < Test::Unit::TestCase
       def valid?
         true
       end
-      
+
       name 'Garrett Bjerkhoel'
       valid valid?
     end
@@ -30,7 +30,7 @@ class TestCompiler < Test::Unit::TestCase
     # The date will have the local time zone offset, hence the wildcard.
     assert_match(%r{\{"date": "2011-11-23T00:00:00.*", "date_time": "2001-02-03T04:05:06Z", "timed": "2012-01-01T00:00:00Z", "zoned": "2012-01-01T00:00:00\+01:00"\}}, actual)
   end
-  
+
   def test_should_support_all_datatypes
     assert_builder_json('{"integer": 1, "mega_integer": 100000000, "float": 13.37, "true_class": true, "false_class": false, "missing_nil": null}') do
       integer 1
@@ -41,7 +41,7 @@ class TestCompiler < Test::Unit::TestCase
       missing_nil
     end
   end
-  
+
   def test_should_support_multiple_nestings
     assert_builder_json('{"u": [{"id": 1, "l": [{"l": 1, "d": "t"}, {"l": 2, "d": "tt"}]}, {"id": 2, "l": [{"l": 2, "d": "t"}, {"l": 4, "d": "tt"}]}]}') do
       u [1, 2] do |i|
@@ -55,13 +55,13 @@ class TestCompiler < Test::Unit::TestCase
       end
     end
   end
-  
+
   def test_support_custom_key_names
     assert_builder_json('{"custom_key": 1, "with_method": "nope", "as_string": true, "nested": {"deep_down": -1, "custom": true}, "nope": "chuck"}') do
       def with_method
         "nope"
       end
-      
+
       key :custom_key, 1
       key :with_method, with_method
       key 'as_string', true
@@ -69,14 +69,14 @@ class TestCompiler < Test::Unit::TestCase
         def custom
           'custom'
         end
-        
+
         key 'deep_down', -1
         key custom, true
       end
       key with_method, 'chuck'
     end
   end
-  
+
   def test_support_custom_classes
     assert_builder_json('{"hello": "olleh"}') do
       hello Dozer.new('hello')

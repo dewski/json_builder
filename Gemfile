@@ -1,10 +1,10 @@
-source "http://rubygems.org"
+source 'http://rubygems.org'
 
 gemspec
 
 gem 'rake'
 
 group :test do
-	gem 'i18n'
-	gem 'tzinfo'
+  gem 'i18n'
+  gem 'tzinfo'
 end
