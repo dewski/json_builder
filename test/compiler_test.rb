@@ -88,10 +88,10 @@ class TestCompiler < Test::Unit::TestCase
       hash_test :garrett => true
     end
   end
-  def test_adding_generate_
-    json = JSONBuilder::Compiler.generate do
+
+  def test_adding_unicoded_key
+    assert_builder_json('{"é": "json"}') do
       é "json"
     end
-    assert_equal '{"é": "json"}', json
   end
 end
