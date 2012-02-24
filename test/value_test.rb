@@ -7,10 +7,6 @@ class TestValue < Test::Unit::TestCase
     JSONBuilder::Value.new(nil, value).to_s
   end
 
-  def test_is_a_builder_value
-    assert_equal JSONBuilder::Value, JSONBuilder::Value.new(nil, true).class
-  end
-
   def test_positive_value
     assert_equal '1', value(1)
   end

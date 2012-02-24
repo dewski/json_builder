@@ -91,7 +91,7 @@ class TestCompiler < Test::Unit::TestCase
 
   def test_adding_unicoded_key
     assert_builder_json('{"é": "json"}') do
-      é "json"
+      key "é", "json"
     end
   end
 end

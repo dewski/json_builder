@@ -2,19 +2,19 @@ require 'active_support/all'
 
 class FalseClass
   def to_builder
-    inspect
+    'false'
   end
 end
 
 class TrueClass
   def to_builder
-    inspect
+    'true'
   end
 end
 
 class String
   def to_builder
-    inspect
+    "\"#{self}\""
   end
 end
 
@@ -33,33 +33,33 @@ end
 module ActiveSupport
   class TimeWithZone
     def to_builder
-      iso8601.inspect
+      "\"#{iso8601}\""
     end
   end
 end
 
 class Time
   def to_builder
-    iso8601.inspect
+    "\"#{iso8601}\""
   end
 end
 
 class Date
   def to_builder
-    to_time.iso8601.inspect
+    "\"#{to_time.iso8601}\""
   end
 end
 
 class DateTime
   def to_builder
-    to_time.iso8601.inspect
+    "\"#{to_time.iso8601}\""
   end
 end
 
 module BSON
   class ObjectId
     def to_builder
-      to_s.inspect
+      "\"#{self}\""
     end
   end
 end

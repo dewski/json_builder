@@ -16,7 +16,7 @@ class TestMember < Test::Unit::TestCase
   end
 
   def test_key_as_unicoded_symbol
-    assert_equal '"hellyé": true', member(:hellyé, true).to_s
+    assert_equal '"hellyé": true', member('hellyé', true).to_s
   end
 
   def test_key_as_string
@@ -28,7 +28,7 @@ class TestMember < Test::Unit::TestCase
   end
 
   def test_value_as_block
-    assert_equal '"hello": "hi"', member('hello') { "hi" }.to_s
+    assert_equal '"hello": "hi"', member('hello') { 'hi' }.to_s
   end
 
   def test_value_as_block_with_hash
