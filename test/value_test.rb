@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 require 'test_helper'
 
 class TestValue < Test::Unit::TestCase
@@ -35,6 +37,10 @@ class TestValue < Test::Unit::TestCase
 
   def test_symbol_value
     assert_equal 'test', value(:test)
+  end
+
+  def test_unicode_char_value
+    assert_equal '"hellyé"', value('hellyé')
   end
 
   def test_time_value

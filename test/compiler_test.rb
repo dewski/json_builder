@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 require 'test_helper'
 require 'active_support/ordered_hash'
 
@@ -85,5 +87,11 @@ class TestCompiler < Test::Unit::TestCase
     assert_builder_json('{"hash_test": {"garrett":true}}') do
       hash_test :garrett => true
     end
+  end
+  def test_adding_generate_
+    json = JSONBuilder::Compiler.generate do
+      é "json"
+    end
+    assert_equal '{"é": "json"}', json
   end
 end
