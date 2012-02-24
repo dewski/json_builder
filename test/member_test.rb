@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 require 'test_helper'
 
 class TestMember < Test::Unit::TestCase
@@ -11,6 +13,10 @@ class TestMember < Test::Unit::TestCase
   
   def test_key_as_symbol
     assert_equal '"hello": true', member(:hello, true).to_s
+  end
+  
+  def test_key_as_unicoded_symbol
+    assert_equal '"hellyé": true', member(:hellyé, true).to_s
   end
   
   def test_key_as_string
