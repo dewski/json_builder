@@ -100,7 +100,7 @@ class UsersController < ApplicationController
 end
 ```
 
-Lastly, create `app/views/users/index.json_builder` which could look something like:
+Lastly, create `app/views/users/index.json.json_builder` which could look something like:
     
 ```ruby
 count @users.count
