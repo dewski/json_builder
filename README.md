@@ -8,24 +8,24 @@ Rails provides an excellent XML Builder by default to build RSS and ATOM feeds, 
 require 'json_builder'
 
 json = JSONBuilder::Compiler.generate do
-  name "Garrett Bjerkhoel"
-  email "spam@garrettbjerkhoel.com"
+  name 'Garrett Bjerkhoel'
+  email 'spam@garrettbjerkhoel.com'
   url root_path
   address do
-    street "1234 1st Ave"
-    street2 "Apt 1"
-    city "New York"
-    state "NY"
+    street '1234 1st Ave'
+    street2 'Apt 1'
+    city 'New York'
+    state 'NY'
     zip 10065
   end
-  key :nil, "testing a custom key name"
+  key :nil, 'testing a custom key name'
   skills do
     ruby true
     asp false
   end
   longstring do
     # Could be a highly intensive process that only returns a string
-    "12345" * 25
+    '12345' * 25
   end
 end
 ```
@@ -56,7 +56,7 @@ Which will generate:
 If you'd like to just generate an array:
 
 ```ruby
-array ["Garrett Bjerkhoel", "John Doe"] do |name|
+array ['Garrett Bjerkhoel', 'John Doe'] do |name|
   first, last = name.split(' ')
   first first
   last last
@@ -170,7 +170,7 @@ You will get something like:
 
 ### Including JSONP callbacks
 
-Out of the box JSON Builder supports JSONP callbacks when used within a Rails project just by using the callback parameter. For instance, if you requested `/users.json?callback=myjscallback`, you'll get a callback wrapping the response:
+Out of the box JSON Builder supports JSONP callbacks when used within a Rails project just by using the `callback` parameter. For instance, if you requested `/users.json?callback=myjscallback`, you'll get a callback wrapping the response:
 
 ```json
 myjscallback([
@@ -183,15 +183,8 @@ myjscallback([
 ])
 ```
 
-To be able to turn off this functionality, you can do it per-environment, or globally:
+To turn off JSONP callbacks globally or just per-environment:
 
-#### Per Environment
-
-```ruby
-Spyder::Application.configure do
-  config.action_view.json_callback = false
-end
-```
 
 #### Globally
 
@@ -199,9 +192,17 @@ end
 ActionView::Base.json_callback = false
 ```
 
+#### Per Environment
+
+```ruby
+Sample::Application.configure do
+  config.action_view.json_callback = false
+end
+```
+
 ### Pretty Print Output
 
-Out of the box JSON Builder supports pretty printing the JSON for the development environment, the rest have it turned off for performance reasons. If you'd like to enable or disable pretty printing you can do it within your environment file or you can do it globally.
+Out of the box JSON Builder supports pretty printing only during development, it's disabled by default in other environments for performance. If you'd like to enable or disable pretty printing you can do it within your environment file or you can do it globally.
 
 With pretty print on:
 
@@ -221,7 +222,7 @@ Without:
 #### Per Environment
 
 ```ruby
-Spyder::Application.configure do
+Sample::Application.configure do
   config.action_view.pretty_print_json = false
 end
 ```
@@ -239,9 +240,9 @@ JSON Builder is very fast, it's roughly 3.6 times faster than the core XML Build
     JSONBuilder  2.950000   0.010000    2.960000    (2.968790)
         Builder  10.820000  0.040000    10.860000   (10.930497)
 
-## Other JSON Builders
+## Alternative libraries
 
-There are quite a few other alternatives to JSON Builder, each good in their own way with different DSL's and design approaches that are worth checking out:
+There are alternatives to JSON Builder, each good in their own way with different API's and design approaches that are worth checking out. Although, I would love to hear why JSON Builder didn't fit your needs, by [message or issue.
 
  * [jbuilder](https://github.com/rails/jbuilder)
  * [RABL](https://github.com/nesquena/rabl)
