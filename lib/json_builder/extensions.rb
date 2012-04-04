@@ -20,10 +20,10 @@ class String
   private
 
   def json_escape
-    self.gsub(/\n/, '\\n')
-        .gsub(/\r/, '\\r')
-        .gsub(/\t/, '\\t')
-        .gsub(/\f/, '\\f')
+    self.gsub(/\n/, '\\n').
+         gsub(/\r/, '\\r').
+         gsub(/\t/, '\\t').
+         gsub(/\f/, '\\f')
   end
 end
 
