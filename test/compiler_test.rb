@@ -94,4 +94,10 @@ class TestCompiler < Test::Unit::TestCase
       key 'é', 'json'
     end
   end
+
+  def test_newline_characters
+    assert_builder_json('{"newline": "hello\nworld"}') do
+      newline "hello\nworld"
+    end
+  end
 end

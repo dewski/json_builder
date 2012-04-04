@@ -14,7 +14,16 @@ end
 
 class String
   def to_builder
-    "\"#{self}\""
+    %("#{json_escape}")
+  end
+
+  private
+
+  def json_escape
+    self.gsub(/\n/, '\\n')
+        .gsub(/\r/, '\\r')
+        .gsub(/\t/, '\\t')
+        .gsub(/\f/, '\\f')
   end
 end
 
@@ -33,33 +42,33 @@ end
 module ActiveSupport
   class TimeWithZone
     def to_builder
-      "\"#{iso8601}\""
+      %("#{iso8601}")
     end
   end
 end
 
 class Time
   def to_builder
-    "\"#{iso8601}\""
+    %("#{iso8601}")
   end
 end
 
 class Date
   def to_builder
-    "\"#{to_time.iso8601}\""
+    %("#{to_time.iso8601}")
   end
 end
 
 class DateTime
   def to_builder
-    "\"#{to_time.iso8601}\""
+    %("#{to_time.iso8601}")
   end
 end
 
 module BSON
   class ObjectId
     def to_builder
-      "\"#{self}\""
+      %("#{self}")
     end
   end
 end
