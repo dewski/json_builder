@@ -39,6 +39,10 @@ class TestMember < Test::Unit::TestCase
     assert_equal '"hello": "olleh"', member('hello', Dozer.new('hello')).to_s
   end
 
+  def test_double_quoted_value
+    assert_equal '"hello": "\"Hello\" he said"', member('hello', '"Hello" he said').to_s
+  end
+
   def test_without_key
     assert_raises(JSONBuilder::MissingKeyError) { member(nil, true).to_s }
   end

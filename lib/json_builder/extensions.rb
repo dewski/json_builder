@@ -13,6 +13,16 @@ class TrueClass
 end
 
 class String
+  JS_ESCAPE_MAP = {
+    '\\'    => '\\\\',
+    '</'    => '<\/',
+    "\r\n"  => '\n',
+    "\n"    => '\n',
+    "\r"    => '\n',
+    '"'     => '\\"',
+    "'"     => "\\'"
+  }
+
   def to_builder
     %("#{json_escape}")
   end
@@ -20,10 +30,9 @@ class String
   private
 
   def json_escape
-    self.gsub(/\n/, '\\n').
-         gsub(/\r/, '\\r').
-         gsub(/\t/, '\\t').
-         gsub(/\f/, '\\f')
+    gsub(/(\\|<\/|\r\n|\342\200\250|\342\200\251|[\n\r"'])/u) { |match|
+      JS_ESCAPE_MAP[match]
+    }
   end
 end
 

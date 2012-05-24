@@ -64,4 +64,8 @@ class TestValue < Test::Unit::TestCase
   def test_custom_class
     assert_equal '"olleh"', value(Dozer.new('hello'))
   end
+
+  def test_double_quoted_value
+    assert_equal '"\"hello\""', value('"hello"')
+  end
 end
