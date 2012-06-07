@@ -13,6 +13,7 @@ module JSONBuilder
     # Returns an instance of JSONBuilder::Member, JSONBuilder::Compiler
     # or String.
     def initialize(scope, arg, &block)
+      @scope = scope
       if block_given?
         @value = Compiler.new(:scope => scope)
         compiled = @value.compile(arg, &block)
@@ -30,7 +31,7 @@ module JSONBuilder
     #
     # Returns a String.
     def to_s
-      @value.respond_to?(:to_builder) ? @value.to_builder : @value.to_s
+      @value.respond_to?(:to_builder) ? @value.to_builder(@scope) : @value.to_s
     end
   end
 end
