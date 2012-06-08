@@ -31,7 +31,7 @@ module JSONBuilder
     #
     # Returns a String.
     def to_s
-      @value.respond_to?(:to_builder) ? @value.to_builder(@scope) : @value.to_s
+       @value.to_builder(@scope)
     end
   end
 end

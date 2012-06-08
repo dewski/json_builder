@@ -1,5 +1,11 @@
 require 'active_support/all'
 
+class Object
+	def to_builder(scope=nil)
+		to_s
+	end
+end
+
 class FalseClass
   def to_builder(scope)
     'false'
@@ -85,7 +91,7 @@ end
 module ActiveRecord
   class Base
     def to_builder(scope)
-      path = "#{Rails.root}/app/views/#{self.class.model_name.partial_path}.json.json_builder"
+      path = "#{Rails.root}/app/views/#{self.to_partial_path}.json.json_builder"
       @object = self
       json = JSONBuilder::Compiler.new(:scope => scope)
       json.compile do
