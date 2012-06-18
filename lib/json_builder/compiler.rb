@@ -45,8 +45,8 @@ module JSONBuilder
     def initialize(options={})
       @_members = []
       @_scope = options[:scope]
-      @_callback = options[:callback] || true
-      @_pretty_print = options[:pretty] || false
+      @_callback = options.has_key?(:callback) ? options[:callback] : true
+      @_pretty_print = options.has_key?(:pretty) ? options[:pretty] : false
 
       # Only copy instance variables if there is a scope and presence of Rails
       copy_instance_variables_from(@_scope) if @_scope
