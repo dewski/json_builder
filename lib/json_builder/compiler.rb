@@ -44,9 +44,9 @@ module JSONBuilder
     # Returns instance of JSONBuilder::Compiler.
     def initialize(options={})
       @_members = []
-      @_scope = options[:scope]
-      @_callback = options[:callback] || true
-      @_pretty_print = options[:pretty] || false
+      @_scope = options.fetch(:scope, nil)
+      @_callback = options.fetch(:callback, true)
+      @_pretty_print = options.fetch(:pretty, false)
 
       # Only copy instance variables if there is a scope and presence of Rails
       copy_instance_variables_from(@_scope) if @_scope
