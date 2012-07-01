@@ -10,10 +10,9 @@ require 'json_builder'
 json = JSONBuilder::Compiler.generate do
   name 'Garrett Bjerkhoel'
   email 'spam@garrettbjerkhoel.com'
-  url root_path
+  url user_url(user)
   address do
     street '1234 1st Ave'
-    street2 'Apt 1'
     city 'New York'
     state 'NY'
     zip 10065
@@ -36,10 +35,9 @@ Which will generate:
 {
   "name": "Garrett Bjerkhoel",
   "email": "spam@garrettbjerkhoel.com",
-  "url": "/",
+  "url": "http://examplesite.com/dewski",
   "address": {
     "street": "1234 1st Ave",
-    "street2": "Apt 1",
     "city": "New York",
     "state": "NY",
     "zip": 10065
