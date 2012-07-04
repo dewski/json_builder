@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    json_builder (3.1.4)
+    json_builder (3.1.5)
       activesupport (>= 2.0.0)
 
 GEM
