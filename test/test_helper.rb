@@ -17,7 +17,7 @@ class Dozer
     @value = value
   end
 
-  def to_builder
+  def to_builder(scope)
     @value.reverse.inspect
   end
 end
