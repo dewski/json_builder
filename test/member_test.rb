@@ -43,6 +43,10 @@ class TestMember < Test::Unit::TestCase
     assert_equal '"hello": "\"Hello\" he said"', member('hello', '"Hello" he said').to_s
   end
 
+  def test_single_quoted_value
+    assert_equal %Q("hello": "hello 'test'!"), member('hello', "hello 'test'!").to_s
+  end
+
   def test_without_key
     assert_raises(JSONBuilder::MissingKeyError) { member(nil, true).to_s }
   end
