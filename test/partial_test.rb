@@ -13,6 +13,14 @@ class TestPartial < Test::Unit::TestCase
     JSONBuilder::Partial.new(*args)
   end
 
+  def test_object_as_first_argument
+    assert_kind_of User, partial(User.new).object
+  end
+
+  def test_array_of_objects_as_first_argument
+    assert_kind_of Array, partial([Hash.new, Hash.new]).object
+  end
+
   def test_partial_file_path_from_model
     assert_equal 'users', partial(User.new).path
   end
