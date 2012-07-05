@@ -168,7 +168,7 @@ You will get something like:
 
 ### Rendering Partials
 
-Render partials is just as easy as defining your schema. Just pass in any object that responds to `to_partial_path` (such as ActiveRecord models) , or a direct path to partial for it to render.
+Rendering partials is just as easy as defining your schema. Just pass in any object that responds to `to_partial_path` (such as ActiveRecord models), or a direct path to a partial to render it.
 
 ```ruby
 count @users.count
@@ -181,6 +181,8 @@ With your partial living at `app/views/users/_user.json_builder`
 name user.name
 awesome user.awesome?
 ```
+
+The JSON response would be:
 
 ```json
 {
