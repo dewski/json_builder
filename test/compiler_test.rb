@@ -100,4 +100,14 @@ class TestCompiler < Test::Unit::TestCase
       newline "hello\nworld"
     end
   end
+
+  def test_partial_compilation
+    assert_builder_json('{"results": 500, "embedded": "partial", "metadata": {"expires": "soon"}}') do
+      results 500
+      partial File.expand_path('../fixtures/_partial.json_builder', __FILE__)
+      metadata do
+        expires "soon"
+      end
+    end
+  end
 end

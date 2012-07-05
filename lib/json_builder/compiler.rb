@@ -1,5 +1,6 @@
 require 'json'
 require 'json_builder/member'
+require 'json_builder/partial'
 
 module JSONBuilder
   class Compiler
@@ -69,6 +70,17 @@ module JSONBuilder
     # Returns instance of JSONBuilder::Elements.
     def array(items, &block)
       @_array = Elements.new(@_scope, items, &block)
+    end
+
+    # Public: Executes an extracted bit of JSONBuilder view code on the parent
+    # JSONBuilder::Compiler object.
+    #
+    # args - could be string or options
+    #
+    # Returns nothing.
+    def partial(*args)
+      partial = Partial.new(*args)
+      instance_eval partial.source
     end
 
     # Public: Called anytime the compiler is passed JSON keys,
