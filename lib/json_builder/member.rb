@@ -15,7 +15,7 @@ module JSONBuilder
     #
     # Raises JSONBuilder::MissingKeyError if the key passed is nil.
     # Returns instance of JSONBuilder::Member.
-    def initialize(key, scope, *args, &block)
+    def initialize(scope, key, *args, &block)
       raise MissingKeyError if key.nil?
 
       @key = key

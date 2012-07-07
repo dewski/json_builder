@@ -4,7 +4,7 @@ require 'test_helper'
 
 class TestMember < Test::Unit::TestCase
   def member(key, value=nil, &block)
-    JSONBuilder::Member.new(key, nil, value, &block)
+    JSONBuilder::Member.new(nil, key, value, &block)
   end
 
   def test_is_a_builder_value

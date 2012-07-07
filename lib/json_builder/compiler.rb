@@ -117,7 +117,7 @@ module JSONBuilder
     #
     # Returns instance of JSONBuilder::Member.
     def key(key_name, *args, &block)
-      member = Member.new(key_name, @_scope, *args, &block)
+      member = Member.new(@_scope, key_name, *args, &block)
       @_members << member
       member
     end
