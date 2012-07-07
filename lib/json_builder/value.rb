@@ -13,7 +13,7 @@ module JSONBuilder
     # Returns an instance of JSONBuilder::Member, JSONBuilder::Compiler
     # or String.
     def initialize(scope, arg, &block)
-      if block_given?
+      if block
         @value = Compiler.new(:scope => scope)
         compiled = @value.compile(arg, &block)
 
