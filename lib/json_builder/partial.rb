@@ -1,7 +1,10 @@
 require 'active_support/notifications'
+require 'json_builder/helpers'
 
 module JSONBuilder
   class Partial
+    include Helpers
+
     class MissingTemplate < StandardError; end;
 
     attr_accessor :object
