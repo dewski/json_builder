@@ -32,13 +32,21 @@ module JSONBuilder
       end
     end
 
-    def source
-      instrument :template do
-        begin
-          File.read @path
-        rescue Errno::ENOENT
-          raise MissingTemplate
+    def render
+      if collection?
+        @object.each do |instance|
+          render_layout instance
         end
+      else
+        render_layout
+      end
+    end
+
+    def source
+      begin
+        File.read @path
+      rescue Errno::ENOENT
+        raise MissingTemplate, "Missing partial #{@path}"
       end
     end
 

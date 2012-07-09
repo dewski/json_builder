@@ -82,8 +82,7 @@ module JSONBuilder
     #
     # Returns nothing.
     def partial(*args)
-      partial = Partial.new(*args)
-      instance_eval partial.source
+      Partial.render(self, *args)
     end
 
     # Public: Called anytime the compiler is passed JSON keys,
