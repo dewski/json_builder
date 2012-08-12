@@ -74,10 +74,22 @@ class DateTime
   end
 end
 
+# Mongoid < 3.0.0
 module BSON
   class ObjectId
     def to_builder
       %("#{self}")
+    end
+  end
+end
+
+# Mongoid >= 3.0.0
+module Moped
+  module BSON
+    class ObjectId
+      def to_builder
+        %("#{self}")
+      end
     end
   end
 end
