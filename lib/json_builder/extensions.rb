@@ -19,6 +19,7 @@ class String
     "\r\n"  => '\n',
     "\n"    => '\n',
     "\r"    => '\n',
+    "\t"    => '\t',
     '"'     => '\\"',
     "'"     => "\'"
   }
@@ -30,7 +31,7 @@ class String
   private
 
   def json_escape
-    gsub(/(\\|<\/|\r\n|\342\200\250|\342\200\251|[\n\r"'])/u) { |match|
+    gsub(/(\\|<\/|\r\n|\342\200\250|\342\200\251|[\t\n\r"'])/u) { |match|
       JS_ESCAPE_MAP[match]
     }
   end
