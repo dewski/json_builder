@@ -100,4 +100,10 @@ class TestCompiler < Test::Unit::TestCase
       newline "hello\nworld"
     end
   end
+
+  def test_tab_characters
+    assert_builder_json('{"tab": "hello\tworld"}') do
+      tab "hello\tworld"
+    end
+  end
 end
