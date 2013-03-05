@@ -17,5 +17,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'activesupport', '>= 2.0.0'
   s.add_dependency 'json'
+
   s.add_development_dependency 'tzinfo'
 end
