@@ -3,3 +3,12 @@ doc/*
 .DS_Store
 *.log
 /.rbenv-version
+
+# Bundle settings
+/.bundle
+
+# Coverage report
+/coverage
+
+# Gem install location
+/vendor
