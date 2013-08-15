@@ -9,7 +9,7 @@ module ActionView #:nodoc:
 end
 
 # Rails 2.X Template
-if defined?(Rails) && Rails.version.starts_with? '2'
+if defined?(Rails) && Rails.version.starts_with?('2')
   require 'action_view/base'
   require 'action_view/template'
 
@@ -31,7 +31,7 @@ if defined?(Rails) && Rails.version.starts_with? '2'
 end
 
 # Rails 3.X and 4.X Template
-if defined?(Rails) && Rails.version.starts_with? '3', '4'
+if defined?(Rails) && Rails.version.starts_with?('3', '4')
   module ActionView
     module Template::Handlers
       class JSONBuilder
