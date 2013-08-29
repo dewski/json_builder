@@ -50,4 +50,10 @@ class TestMember < Test::Unit::TestCase
   def test_without_key
     assert_raises(JSONBuilder::MissingKeyError) { member(nil, true).to_s }
   end
+
+  def test_with_enumerable
+    json = member('hello', [1, 2, 3]) { |i| index i }.to_s
+
+    assert_equal '"hello": [{"index": 1}, {"index": 2}, {"index": 3}]', json
+  end
 end
