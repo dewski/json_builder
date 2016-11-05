@@ -1,3 +1,5 @@
+*No longer maintained, please check out [jbuilder](https://github.com/rails/jbuilder)*
+
 JSON Builder [![Build Status](https://secure.travis-ci.org/dewski/json_builder.png)](http://travis-ci.org/dewski/json_builder)
 ============
 Rails provides an excellent XML Builder by default to build RSS and ATOM feeds, but nothing to help you build complex and custom JSON data structures. The standard `to_json` works just fine, but can get very verbose when you need full control of what is generated and performance is a factor. JSON Builder hopes to solve that problem.
