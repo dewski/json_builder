@@ -172,7 +172,7 @@ module JSONBuilder
     #
     # Returns an Array of Symbols.
     def ignore_scope_methods
-      [:id]
+      [:id, :label]
     end
   end
 end

@@ -31,7 +31,7 @@ if defined?(Rails) && Rails.version.starts_with?('2')
 end
 
 # Rails 3.X and 4.X Template
-if defined?(Rails) && Rails.version.starts_with?('3', '4')
+if defined?(Rails) && Rails.version.to_s.starts_with?('3', '4')
   module ActionView
     module Template::Handlers
       class JSONBuilder
