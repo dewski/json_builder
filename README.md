@@ -168,6 +168,64 @@ You will get something like:
 }
 ```
 
+### Using layouts
+
+To use a layouts, create `app/views/application/application.json.json_builder`:
+
+```ruby
+success @success
+data JSON.parse(yield) if @success
+```
+
+Then, you can validate within your controllers:
+
+`app/controllers/posts_controller.rb`:
+
+```ruby
+class PostsController < ApplicationController
+  before_filter :assume_success
+  respond_to :html, :json
+  
+  def show
+    @post = Post.where(id: 123).first
+    @success = false if @post.nil?
+  end
+  
+  private
+  
+  def assume_success
+    @success = true
+  end
+end
+```
+
+`app/views/posts/show.json.json_builder`:
+
+```ruby
+title @post.title
+body @post.body
+```
+
+Now, when you navigate to `/posts/123.json` and it exists, you will get the follow JSON response:
+
+```json
+{
+  "success": true,
+  "data" : {
+    "title" : "Title of post 123",
+    "body" : "This is the body text of post 123"
+  }
+}
+```
+
+And when post 123 does not exist:
+
+```json
+{
+  "success": false,
+}
+```
+
 ### Including JSONP callbacks
 
 Out of the box JSON Builder supports JSONP callbacks when used within a Rails project just by using the `callback` parameter. For instance, if you requested `/users.json?callback=myjscallback`, you'll get a callback wrapping the response:
